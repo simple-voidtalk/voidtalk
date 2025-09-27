@@ -1,0 +1,1 @@
+export { default } from "@voidtalk/ui/postcss.config";

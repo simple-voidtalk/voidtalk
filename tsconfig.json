@@ -1,0 +1,4 @@
+{
+  "extends": "@voidtalk/typescript-config/base.json"
+}
+
