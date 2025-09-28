@@ -23,6 +23,7 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@voidtalk/ui": "workspace:*",
+    "@voidtalk/auth": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.475.0",
     "next": "15.4.7",
