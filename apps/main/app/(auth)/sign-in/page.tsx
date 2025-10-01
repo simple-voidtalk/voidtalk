@@ -1,28 +1,33 @@
 "use client"
-import {SignUpForm} from "@/lib/auth/components/sign-up-form";
+import {SignInForm} from "@/lib/auth/components/sign-in-form";
 import {useRouter} from "next/navigation";
 import {Card, CardContent} from "@voidtalk/ui/components/card";
 
-export default function SignUpPage() {
+export default function SignInPage() {
 
     const router = useRouter();
 
-    const handleSwitchToSignIn = () => {
-        router.push("/sign-in");
+    const handleSwitchToSignUp = () => {
+        router.push("/sign-up");
     }
 
     const handleNavigateAfterSignIn = () => {
         router.push("/profile");
     }
 
+    const handleForgotPassword = () => {
+        router.push("/forgot-password");
+    }
+
     return(
         <div className={"flex items-center justify-center min-h-svh"}>
             <Card>
                 <CardContent>
-                    <SignUpForm
-                        handleSwitchToSignIn={handleSwitchToSignIn}
+                    <SignInForm
+                        handleSwitchToSignUp={handleSwitchToSignUp}
                         handleNavigateAfterSignIn={handleNavigateAfterSignIn}
-                    ></SignUpForm>
+                        handleForgotPassword={handleForgotPassword}
+                    ></SignInForm>
                 </CardContent>
             </Card>
         </div>

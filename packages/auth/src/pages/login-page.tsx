@@ -1,4 +1,4 @@
-import {LoginForm} from "@voidtalk/auth/components/login-form";
+import {LoginForm} from "@voidtalk/auth/components/sign-in-form";
 import {GalleryVerticalEnd} from "lucide-react";
 
 export function LoginPage() {
