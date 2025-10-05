@@ -1,67 +1,58 @@
 "use client";
 
 import { createClient } from "../lib/supabase-client";
-import { cn } from "@voidtalk/ui/lib/utils";
 import React, { useState } from "react";
-import { Button } from "@voidtalk/ui/components/button";
 import { Input } from "@voidtalk/ui/components/input";
 import { Label } from "@voidtalk/ui/components/label";
+import { Button } from "@voidtalk/ui/components/button";
+import { cn } from "@voidtalk/ui/lib/utils";
 
-type SignUpFormProps = React.ComponentPropsWithoutRef<"div"> & {
-  handleSwitchToSignIn: () => void;
+type SignInFormProps = React.ComponentPropsWithoutRef<"div"> & {
+  handleSwitchToSignUp: () => void;
   handleNavigateAfterSignIn: () => void;
+  handleForgotPassword: () => void;
 };
 
-export function SignUpForm(prop: SignUpFormProps) {
+export function SignInForm(prop: SignInFormProps) {
   const {
-    handleSwitchToSignIn,
+    handleSwitchToSignUp,
     handleNavigateAfterSignIn,
+    handleForgotPassword,
     className,
     ...props
   } = prop;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSignUp = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const supabase = createClient();
     setIsLoading(true);
     setError(null);
 
-    if (password !== repeatPassword) {
-      setError("Passwords do not match");
-      setIsLoading(false);
-      return;
-    }
-
     try {
-      const { error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
-        },
       });
       if (error) throw error;
-      handleNavigateAfterSignIn(); //TODO: go to sign-up-success
+      handleNavigateAfterSignIn();
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <form className="flex flex-col gap-6" onSubmit={handleSignUp}>
+      <form className="flex flex-col gap-6" onSubmit={handleLogin}>
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Create your account</h1>
+          <h1 className="text-2xl font-bold">Login to your account</h1>
           <p className="text-muted-foreground text-sm text-balance">
-            Enter your email below to create a new account
+            Enter your email below to login to your account
           </p>
         </div>
         <div className="grid gap-6">
@@ -77,7 +68,17 @@ export function SignUpForm(prop: SignUpFormProps) {
             />
           </div>
           <div className="grid gap-3">
-            <Label htmlFor="password">Password</Label>
+            <div className="flex w-full items-center gap-2 justify-between">
+              <Label htmlFor="password">Password</Label>
+              <Button
+                type="button"
+                variant="link"
+                className="pl-0 h-auto p-0"
+                onClick={handleForgotPassword}
+              >
+                Forgot your password?
+              </Button>
+            </div>
             <Input
               id="password"
               type="password"
@@ -86,30 +87,20 @@ export function SignUpForm(prop: SignUpFormProps) {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="grid gap-3">
-            <Label htmlFor="repeat-password">Repeat Password</Label>
-            <Input
-              id="repeat-password"
-              type="password"
-              required
-              value={repeatPassword}
-              onChange={(e) => setRepeatPassword(e.target.value)}
-            />
-          </div>
           {error && <p className="text-sm text-red-500">{error}</p>}
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Creating account..." : "Sign up"}
+            {isLoading ? "Logging in..." : "Login"}
           </Button>
         </div>
         <div className="text-center text-sm">
-          Already have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Button
             type="button"
             variant="link"
             className="pl-0 h-auto p-0 underline underline-offset-4"
-            onClick={handleSwitchToSignIn}
+            onClick={handleSwitchToSignUp}
           >
-            Login
+            Sign up
           </Button>
         </div>
       </form>

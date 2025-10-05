@@ -1,5 +1,3 @@
 export default function ForgotPasswordPage() {
-    return(
-        <p>Loser</p>
-    )
+  return <p>Loser</p>;
 }
