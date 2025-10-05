@@ -17,9 +17,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             disableTransitionOnChange
             enableColorScheme
         >
-            <AuthProvider
-                navigateToLogin={() => router.push(routes.auth.sign_in)}
-            >
+            <AuthProvider navigateToLogin={() => router.push(routes.auth.sign_in)}>
                 {children}
             </AuthProvider>
         </NextThemesProvider>

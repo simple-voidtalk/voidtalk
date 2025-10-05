@@ -1,10 +1,9 @@
-"use client"
+"use client";
 import { useAuth } from "@voidtalk/auth/context/use-auth";
 import { Button } from "@voidtalk/ui/components/button";
 
 export default function ProfilePage() {
-
-    const {loading, user,logout} = useAuth();
+    const { loading, user, logout } = useAuth();
 
     return (
         <>

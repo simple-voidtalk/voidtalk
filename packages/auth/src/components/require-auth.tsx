@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { JSX, useEffect } from "react";
 import { useAuth } from "@voidtalk/auth/context/use-auth";

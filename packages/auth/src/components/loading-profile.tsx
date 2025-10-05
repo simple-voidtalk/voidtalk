@@ -1,4 +1,4 @@
-import {Loader} from "lucide-react";
+import { Loader } from "lucide-react";
 
 export default function LoadingProfile() {
     return (
@@ -6,5 +6,5 @@ export default function LoadingProfile() {
             <p>Loading your Profile</p>
             <Loader></Loader>
         </div>
-    )
+    );
 }

@@ -42,7 +42,7 @@ export function SignUpForm(prop: SignUpFormProps) {
                 },
             });
             if (error) {
-                console.error("Failed to SignUp",error);
+                console.error("Failed to SignUp", error);
             }
             handleNavigateAfterSignIn();
         } catch (error: unknown) {
