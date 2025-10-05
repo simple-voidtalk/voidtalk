@@ -41,7 +41,9 @@ export function SignUpForm(prop: SignUpFormProps) {
                     emailRedirectTo: `${window.location.origin}/protected`,
                 },
             });
-            if (error) throw error;
+            if (error) {
+                console.error("Failed to SignUp",error);
+            }
             handleNavigateAfterSignIn();
         } catch (error: unknown) {
             setError(error instanceof Error ? error.message : "An error occurred");
