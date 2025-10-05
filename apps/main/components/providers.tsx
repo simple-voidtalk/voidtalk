@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { AuthProvider } from "@voidtalk/auth/context/use-auth";
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
@@ -12,7 +13,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
             disableTransitionOnChange
             enableColorScheme
         >
-            {children}
+            <AuthProvider
+                navigateToLogin={() => console.log("Navigate to login") /*TODO: implement*/}
+            >
+                {children}
+            </AuthProvider>
         </NextThemesProvider>
     );
 }
