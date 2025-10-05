@@ -1,4 +1,5 @@
 import { supabaseClient } from "../supabase-client";
+import { AuthChangeEvent, Session } from "@supabase/supabase-js";
 
 export class AuthApi {
     static async signOut(): Promise<void> {
@@ -13,7 +14,9 @@ export class AuthApi {
         return supabaseClient.auth.getSession();
     }
 
-    static onAuthStateChange(callback: (event: any, session: any) => void) {
+    static onAuthStateChange(
+        callback: (event: AuthChangeEvent, session: Session | null) => void
+    ) {
         return supabaseClient.auth.onAuthStateChange(callback);
     }
 }
