@@ -42,7 +42,7 @@ export function SignUpForm(prop: SignUpFormProps) {
                 },
             });
             if (error) throw error;
-            handleNavigateAfterSignIn(); //TODO: go to sign-up-success
+            handleNavigateAfterSignIn();
         } catch (error: unknown) {
             setError(error instanceof Error ? error.message : "An error occurred");
         } finally {

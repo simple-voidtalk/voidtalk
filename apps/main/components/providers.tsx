@@ -3,8 +3,12 @@
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { AuthProvider } from "@voidtalk/auth/context/use-auth";
+import { useTypedRouter } from "@/lib/typedRouter";
+import { routes } from "@/lib/routes";
 
 export function Providers({ children }: { children: React.ReactNode }) {
+    const router = useTypedRouter();
+
     return (
         <NextThemesProvider
             attribute="class"
@@ -14,7 +18,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             enableColorScheme
         >
             <AuthProvider
-                navigateToLogin={() => console.log("Navigate to login") /*TODO: implement*/}
+                navigateToLogin={() => router.push(routes.auth.sign_in)}
             >
                 {children}
             </AuthProvider>
