@@ -1,15 +1,10 @@
-import { Button } from "@voidtalk/ui/components/button"
-import {Card} from "@voidtalk/ui/components/card";
+import Link from "next/link";
 
 export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-svh">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold">Hello World</h1>
-      </div>
-        <Card>
-            <Button size="sm">Button</Button>
-        </Card>
-    </div>
-  )
+    return (
+        <div className="flex flex-col items-center justify-center min-h-svh">
+            <h1 className="text-5xl font-thin underline">Home Page of Voidtalk</h1>
+            <Link href="/sign-in">Login</Link>
+        </div>
+    );
 }

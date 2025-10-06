@@ -1,0 +1,109 @@
+"use client";
+
+import { createClient } from "../lib/supabase-client";
+import React, { useState } from "react";
+import { Input } from "@voidtalk/ui/components/input";
+import { Label } from "@voidtalk/ui/components/label";
+import { Button } from "@voidtalk/ui/components/button";
+import { cn } from "@voidtalk/ui/lib/utils";
+
+type SignInFormProps = React.ComponentPropsWithoutRef<"div"> & {
+    handleSwitchToSignUp: () => void;
+    handleNavigateAfterSignIn: () => void;
+    handleForgotPassword: () => void;
+};
+
+export function SignInForm(prop: SignInFormProps) {
+    const {
+        handleSwitchToSignUp,
+        handleNavigateAfterSignIn,
+        handleForgotPassword,
+        className,
+        ...props
+    } = prop;
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const supabase = createClient();
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const { error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+            if (error) throw error;
+            handleNavigateAfterSignIn();
+        } catch (error: unknown) {
+            setError(error instanceof Error ? error.message : "An error occurred");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    return (
+        <div className={cn("flex flex-col gap-6", className)} {...props}>
+            <form className="flex flex-col gap-6" onSubmit={handleLogin}>
+                <div className="flex flex-col items-center gap-2 text-center">
+                    <h1 className="text-2xl font-bold">Login to your account</h1>
+                    <p className="text-muted-foreground text-sm text-balance">
+                        Enter your email below to login to your account
+                    </p>
+                </div>
+                <div className="grid gap-6">
+                    <div className="grid gap-3">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                            id="email"
+                            type="email"
+                            placeholder="m@example.com"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="grid gap-3">
+                        <div className="flex w-full items-center gap-2 justify-between">
+                            <Label htmlFor="password">Password</Label>
+                            <Button
+                                type="button"
+                                variant="link"
+                                className="pl-0 h-auto p-0"
+                                onClick={handleForgotPassword}
+                            >
+                                Forgot your password?
+                            </Button>
+                        </div>
+                        <Input
+                            id="password"
+                            type="password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    {error && <p className="text-sm text-red-500">{error}</p>}
+                    <Button type="submit" className="w-full" disabled={isLoading}>
+                        {isLoading ? "Logging in..." : "Login"}
+                    </Button>
+                </div>
+                <div className="text-center text-sm">
+                    Don&apos;t have an account?{" "}
+                    <Button
+                        type="button"
+                        variant="link"
+                        className="pl-0 h-auto p-0 underline underline-offset-4"
+                        onClick={handleSwitchToSignUp}
+                    >
+                        Sign up
+                    </Button>
+                </div>
+            </form>
+        </div>
+    );
+}

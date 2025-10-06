@@ -8,6 +8,9 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
+    "@supabase/ssr": "latest",
+    "@supabase/supabase-js": "latest",
+    "@voidtalk/ui": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
@@ -34,6 +37,8 @@
     "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
+    "./context/*": "./src/context/*.tsx",
+    "./pages/*": "./src/pages/*.tsx",
     "./hooks/*": "./src/hooks/*.ts"
   }
 }
