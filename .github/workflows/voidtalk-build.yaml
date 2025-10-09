@@ -42,6 +42,7 @@ jobs:
           npm install --global pnpm
           pnpm install
           pnpm build
+          rm -rf apps/main/.next/cache
 
 # Please do not touch the following action
       - name: Store deployment content
