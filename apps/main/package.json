@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
     "@voidtalk/auth": "workspace:*",
     "@voidtalk/shared": "workspace:*",
     "@voidtalk/ui": "workspace:*",

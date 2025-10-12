@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import "@voidtalk/ui/globals.css";
 import { Providers } from "@/components/providers";
@@ -21,7 +22,10 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}>
-                <Providers>{children}</Providers>
+                <Providers>
+                    {children}
+                    <SpeedInsights/>
+                </Providers>
             </body>
         </html>
     );
