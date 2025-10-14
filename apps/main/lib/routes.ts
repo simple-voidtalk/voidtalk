@@ -15,4 +15,10 @@ export const routes = {
     },
 } as const;
 
+export const socialRoutes = {
+    tiktok: "https://www.tiktok.com/@simplevoidtalk",
+    youtube: "https://www.youtube.com/@simplevoidtalk",
+    instagram: "https://www.instagram.com/simplevoidtalk/",
+}
+
 export type AppRoute = ExtractRoutes<typeof routes>;
