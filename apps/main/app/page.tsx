@@ -11,8 +11,11 @@ import {
     SidebarMenuItem,
     SidebarProvider,
 } from "@voidtalk/ui/components/sidebar";
-import { ChevronRightIcon, Home, Search, Settings } from "lucide-react";
-import { Button } from "@voidtalk/ui/components/button";
+import {
+    ChevronRightIcon,
+    Home
+} from "lucide-react";
+import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 import {
     Item,
     ItemActions,
@@ -23,7 +26,8 @@ import {
 import { Separator } from "@voidtalk/ui/components/separator";
 import { SidebarTrigger } from "@/components/sidebartrigger";
 import { TypedLink } from "@/lib/typedLink";
-import { routes } from "@/lib/routes";
+import { routes, socialRoutes } from "@/lib/routes";
+import LoginButton from "@/components/login-button";
 
 export default function Page() {
     const items = [
@@ -31,17 +35,7 @@ export default function Page() {
             title: "Home",
             url: "#",
             icon: Home,
-        },
-        {
-            title: "Search",
-            url: "#",
-            icon: Search,
-        },
-        {
-            title: "Settings",
-            url: "#",
-            icon: Settings,
-        },
+        }
     ];
 
     return (
@@ -68,7 +62,7 @@ export default function Page() {
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter>
-                    <Button>Login</Button>
+                    <LoginButton/>
                 </SidebarFooter>
             </Sidebar>
             <div className={"flex flex-col w-full"}>
@@ -81,7 +75,7 @@ export default function Page() {
                             Voidtalk <br /> make it Simple
                         </h1>
                         <div>
-                            <Button>Login</Button>
+                            <LoginButton/>
                         </div>
                     </div>
                     <div className={"flex flex-col m-4 gap-4 w-full max-w-90"}>
@@ -112,9 +106,12 @@ export default function Page() {
                 <footer>
                     <div className={"flex flex-col m-4 gap-4"}>
                         <Separator />
-                        <h3 className={"text-xl"}>Voidtalk</h3>
-                        <p>Socials...</p>
-                        <p>otherstuff</p>
+                        <h3 className={"text-xl"}>voidtalk</h3>
+                        <div className={"flex gap-4"}>
+                            <a href={socialRoutes.tiktok}><FaTiktok/></a>
+                            <a href={socialRoutes.instagram}><FaInstagram/></a>
+                            <a href={socialRoutes.youtube}><FaYoutube/></a>
+                        </div>
                     </div>
                 </footer>
             </div>
