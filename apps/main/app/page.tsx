@@ -15,7 +15,7 @@ import {
     ChevronRightIcon,
     Home
 } from "lucide-react";
-import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
+import { FaDiscord, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 import {
     Item,
     ItemActions,
@@ -107,10 +107,15 @@ export default function Page() {
                     <div className={"flex flex-col m-4 gap-4"}>
                         <Separator />
                         <h3 className={"text-xl"}>voidtalk</h3>
+                        <p>Socials</p>
                         <div className={"flex gap-4"}>
                             <a href={socialRoutes.tiktok}><FaTiktok/></a>
                             <a href={socialRoutes.instagram}><FaInstagram/></a>
                             <a href={socialRoutes.youtube}><FaYoutube/></a>
+                        </div>
+                        <p>Community</p>
+                        <div className={"flex gap-4"}>
+                            <a href={socialRoutes.discord}><FaDiscord/></a>
                         </div>
                     </div>
                 </footer>

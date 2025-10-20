@@ -19,6 +19,7 @@ export const socialRoutes = {
     tiktok: "https://www.tiktok.com/@simplevoidtalk",
     youtube: "https://www.youtube.com/@simplevoidtalk",
     instagram: "https://www.instagram.com/simplevoidtalk/",
+    discord: "https://discord.gg/UM4xvdQSr3",
 }
 
 export type AppRoute = ExtractRoutes<typeof routes>;
